@@ -83,6 +83,12 @@ Router4(config)# ip route 10.0.3.0 255.255.255.0 10.0.1.1
 
 Routing Statis:
 
+![App Screenshot](/Image/Rangkaian.png)
+
+![App Screenshot](/Image/6.png)
+
+![App Screenshot](/Image/5.png)
+
 - Saat pengiriman packet data dari sumber ke tujuan menggunakan routing statis, router akan memeriksa tabel routingnya untuk menentukan jalur yang tepat. Packet akan diteruskan ke tujuan sesuai dengan jalur yang ditentukan dalam tabel routing statis.
   Dynamic Routing RIPv2:
 
