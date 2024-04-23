@@ -14,57 +14,127 @@ Task:
 Router 1
 
 ```bash
-Router1(config)# interface gigabitEthernet0/0
-Router1(config-if)# ip address 192.168.1.1 255.255.255.0
+Router1(config)# interface FastEthernet0/0
+Router1(config-if)# ip address 192.168.2.1 255.255.255.0
 Router1(config-if)# no shutdown
 
-Router1(config)# interface gigabitEthernet0/1
+Router1(config)# interface Serial0/0/0
 Router1(config-if)# ip address 10.0.0.1 255.255.255.0
 Router1(config-if)# no shutdown
+```
 
-Router1(config)# ip route 10.0.1.0 255.255.255.0 10.0.0.2
+```bash
+Router1(config)# ip route 192.168.20.0 255.255.255.0 10.10.10.2
+Router1(config)# ip route 10.20.10.0 255.255.255.0 10.10.10.2
+Router1(config)# ip route 192.168.40.0 255.255.255.0 10.10.10.2
+Router1(config)# ip route 10.30.10.0 255.255.255.0 10.10.10.2
+Router1(config)# ip route 172.16.10.0 255.255.255.0 10.10.10.2
+```
+
+```bash
+Router1(config)# router rip
+Router1(config-router)# version 2
+Router1(config-router)# network 192.168.2.0
+Router1(config-router)# network 10.0.0.0
+Router1(config-router)# network 192.168.20.0
+Router1(config-router)# network 192.168.40.0
+Router1(config-router)# network 172.16.0.0
 ```
 
 Router 2
 
 ```bash
-Router2(config)# interface gigabitEthernet0/0
-Router2(config-if)# ip address 192.168.2.1 255.255.255.0
+Router2(config)# interface FastEthernet0/0
+Router2(config-if)# ip address 192.168.20.1 255.255.255.0
 Router2(config-if)# no shutdown
 
-Router2(config)# interface gigabitEthernet0/1
+Router2(config)# interface Serial0/0/0
 Router2(config-if)# ip address 10.0.0.2 255.255.255.0
 Router2(config-if)# no shutdown
 
-Router2(config)# ip route 10.0.2.0 255.255.255.0 10.0.0.1
+Router2(config)# interface Serial0/0/1
+Router2(config-if)# ip address 10.20.10.1 255.255.255.0
+Router2(config-if)# no shutdown
+```
+
+```bash
+Router2(config)# ip route 192.168.2.0 255.255.255.0 10.10.10.1
+Router2(config)# ip route 192.168.40.0 255.255.255.0 10.20.10.2
+Router2(config)# ip route 10.30.10.0 255.255.255.0 10.20.10.2
+Router2(config)# ip route 172.16.10.0 255.255.255.0 10.20.10.2
+```
+
+```bash
+Router2(config)# router rip
+Router2(config-router)# version 2
+Router2(config-router)# network 192.168.20.0
+Router2(config-router)# network 10.0.0.0
+Router2(config-router)# network 192.168.2.0
+Router2(config-router)# network 192.168.40.0
+Router2(config-router)# network 172.16.0.0
 ```
 
 Router 3
 
 ```bash
-Router3(config)# interface gigabitEthernet0/0
-Router3(config-if)# ip address 192.168.3.1 255.255.255.0
+Router3(config)# interface FastEthernet0/0
+Router3(config-if)# ip address 192.168.40.1 255.255.255.0
 Router3(config-if)# no shutdown
 
-Router3(config)# interface gigabitEthernet0/1
-Router3(config-if)# ip address 10.0.1.1 255.255.255.0
+Router3(config)# interface Serial0/0/0
+Router3(config-if)# ip address 10.20.10.2 255.255.255.0
 Router3(config-if)# no shutdown
 
-Router3(config)# ip route 10.0.2.0 255.255.255.0 10.0.1.2
+Router3(config)# interface Serial0/0/1
+Router3(config-if)# ip address 10.30.10.1 255.255.255.0
+Router3(config-if)# no shutdown
+```
+
+```bash
+Router3(config)# ip route 172.16.20.0 255.255.255.0 10.30.10.2
+Router3(config)# ip route 192.168.20.0 255.255.255.0 10.20.10.1
+Router3(config)# ip route 10.10.10.0 255.255.255.0 10.20.10.1
+Router3(config)# ip route 192.168.2.0 255.255.255.0 10.20.10.1
+```
+
+```bash
+Router3(config)# router rip
+Router3(config-router)# version 2
+Router3(config-router)# network 192.168.40.0
+Router3(config-router)# network 10.0.0.0
+Router3(config-router)# network 172.16.0.0
+Router3(config-router)# network 192.168.20.0
+Router3(config-router)# network 192.168.2.0
 ```
 
 Router 4
 
 ```bash
-Router4(config)# interface gigabitEthernet0/0
-Router4(config-if)# ip address 192.168.4.1 255.255.255.0
+Router4(config)# interface FastEthernet0/0
+Router4(config-if)# ip address 172.16.10.1 255.255.255.0
 Router4(config-if)# no shutdown
 
-Router4(config)# interface gigabitEthernet0/1
-Router4(config-if)# ip address 10.0.1.2 255.255.255.0
+Router4(config)# interface Serial0/0/0
+Router4(config-if)# ip address 10.30.10.2 255.255.255.0
 Router4(config-if)# no shutdown
+```
 
-Router4(config)# ip route 10.0.3.0 255.255.255.0 10.0.1.1
+```bash
+Router4(config)# ip route 192.168.40.0 255.255.255.0 10.30.10.1
+Router4(config)# ip route 10.20.10.0 255.255.255.0 10.30.10.1
+Router4(config)# ip route 192.168.20.0 255.255.255.0 10.30.10.1
+Router4(config)# ip route 10.10.10.0 255.255.255.0 10.30.10.1
+Router4(config)# ip route 192.168.2.0 255.255.255.0 10.30.10.1
+```
+
+```bash
+Router4(config)# router rip
+Router4(config-router)# version 2
+Router4(config-router)# network 172.16.0.0
+Router4(config-router)# network 10.0.0.0
+Router4(config-router)# network 192.168.40.0
+Router4(config-router)# network 192.168.20.0
+Router4(config-router)# network 192.168.2.0
 ```
 
 ## Penjelasan Hasil:
@@ -81,13 +151,13 @@ Router4(config)# ip route 10.0.3.0 255.255.255.0 10.0.1.1
 
 ## Saat Pengiriman Packet Data:
 
-Routing Statis:
-
 ![App Screenshot](/Image/Rangkaian.png)
 
 ![App Screenshot](/Image/6.png)
 
 ![App Screenshot](/Image/5.png)
+
+Routing Statis:
 
 - Saat pengiriman packet data dari sumber ke tujuan menggunakan routing statis, router akan memeriksa tabel routingnya untuk menentukan jalur yang tepat. Packet akan diteruskan ke tujuan sesuai dengan jalur yang ditentukan dalam tabel routing statis.
   Dynamic Routing RIPv2:
